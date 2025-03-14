@@ -36,6 +36,9 @@ public class LenketMengde<T> implements MengdeADT<T> {
     }
 
     public T fjern(T element){
+        if (first == null) {
+            return null; 
+        }
         Node current = first;
         if (current.data.equals(element)) {
             first = first.next;
@@ -48,6 +51,7 @@ public class LenketMengde<T> implements MengdeADT<T> {
                 size--;
                 return element;
             }
+            current = current.next;
         }
         return null;
     }
