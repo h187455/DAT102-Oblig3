@@ -114,4 +114,48 @@ public class TabellMengde<T> implements MengdeADT<T> {
         }
         return result;
     }
+
+    public boolean erDisjunkt(MengdeADT<T> annenMengde) {
+        T[] snittMengde = annenMengde.tilTabell();
+        
+        for (int i = 0; i < size; i++) {
+            for (T element : snittMengde) {
+                if(elements[i].equals(element) && elements[i] != null) {
+                    return false;
+                }
+            } 
+        }
+        return true;
+    }
+
+    public boolean erLik(MengdeADT<T> annenMengde) {
+        if (this.antallElementer() != annenMengde.antallElementer()) {
+            return false;
+        }
+        for (int i = 0; i < size; i++) {
+            if(!annenMengde.inneholder(elements[i])){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean inneholder(T element) {
+        for (int i = 0; i < size; i++) {
+            if (elements[i].equals(element)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean erDelmengdeAv(MengdeADT<T> annenMengde) {
+        T[] delmengde = annenMengde.tilTabell();
+        for (int i = 0; i < annenMengde.antallElementer(); i++) {
+            if(!this.inneholder(delmengde[i])) {
+                return false;
+            }
+        }
+        return true;
+    }
 }
