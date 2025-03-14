@@ -15,14 +15,8 @@ public class TabellMengde<T> implements MengdeADT<T> {
 
     @SuppressWarnings("unchecked")
     public void leggTil(T element) {
-        boolean check = true;
-        for (int i = 0; i < size; i++) {
-            if (elements[i].equals(element)) {
-                check = false;
-            }
-        }
-        
-        if (size == elements.length && check) {
+        boolean ikkjeDer = !this.inneholder(element);
+        if (size == elements.length && ikkjeDer) {
             
             this.elementsCopy = (T[]) new Object[size*2];
             for (int i = 0; i < size; i++) {
@@ -31,7 +25,7 @@ public class TabellMengde<T> implements MengdeADT<T> {
             elements = elementsCopy;
         }
 
-        if (check) {
+        if (ikkjeDer) {
             elements[size++] = element;
         }
     }
