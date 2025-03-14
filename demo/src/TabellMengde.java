@@ -17,7 +17,7 @@ public class TabellMengde<T> implements MengdeADT<T> {
     public void leggTil(T element) {
         boolean check = true;
         for (int i = 0; i < size; i++) {
-            if (elements[i] == element) {
+            if (elements[i].equals(element)) {
                 check = false;
             }
         }
@@ -38,7 +38,7 @@ public class TabellMengde<T> implements MengdeADT<T> {
 
     public T fjern(T element) {
         for (int i = 0; i < size; i++) {
-            if (elements[i] == element) {
+            if (elements[i].equals(element)) {
                 size--;
                 elements[i] = elements[size];
                 elements[size] = null;
@@ -70,10 +70,30 @@ public class TabellMengde<T> implements MengdeADT<T> {
     }
 
     public MengdeADT<T> minus(MengdeADT<T> annenMengde) {
-        T[] newElements = annenMengde.tilTabell();
-        for (int i = 0; i < newElements.length; i++) {
-            this.fjern(newElements[i]);
+        T[] negativeElements = annenMengde.tilTabell();
+        MengdeADT<T> result = new TabellMengde<>();
+
+        for (int i = 0; i < size; i++) {
+            boolean found = false;
+            for (T element : negativeElements) {
+                if(elements[i] != null && elements[i].equals(element)) {
+                    found = true;
+                    break;
+                }
+            }
+            if (!found) {
+                result.leggTil(elements[i]);
+            }
         }
-        
+        return result;
+    }
+
+    public MengdeADT<T> union(MengdeADT<T> annenMengde) {
+        MengdeADT<T> result = new TabellMengde<>();
+        result.leggTilAlleFra(this);
+        if(annenMengde != null) {
+            result.leggTilAlleFra(annenMengde);
+        }
+        return result;
     }
 }
