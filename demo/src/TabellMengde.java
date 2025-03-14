@@ -70,19 +70,11 @@ public class TabellMengde<T> implements MengdeADT<T> {
     }
 
     public MengdeADT<T> minus(MengdeADT<T> annenMengde) {
-        T[] negativeElements = annenMengde.tilTabell();
         MengdeADT<T> result = new TabellMengde<>();
 
-        for (int i = 0; i < size; i++) {
-            boolean found = false;
-            for (T element : negativeElements) {
-                if(elements[i] != null && elements[i].equals(element)) {
-                    found = true;
-                    break;
-                }
-            }
-            if (!found) {
-                result.leggTil(elements[i]);
+        for (T element : elements) {
+            if (!annenMengde.inneholder(element)) {
+                result.leggTil(element);
             }
         }
         return result;
