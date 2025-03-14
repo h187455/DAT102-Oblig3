@@ -1,3 +1,3 @@
-public class LenketMengde {
+public class LenketMengde<T> implements MengdeADT<T> {
 
 }
