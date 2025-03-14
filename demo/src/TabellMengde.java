@@ -96,4 +96,22 @@ public class TabellMengde<T> implements MengdeADT<T> {
         }
         return result;
     }
+
+    public MengdeADT<T> snitt(MengdeADT<T> annenMengde) {
+        T[] snittMengde = annenMengde.tilTabell();
+        MengdeADT<T> result = new TabellMengde<>();
+        for (int i = 0; i < size; i++) {
+            boolean inBoth = false;
+            for (T element : snittMengde) {
+                if(elements[i].equals(element) && elements[i] != null) {
+                    inBoth = true;
+                    break;
+                }
+            }
+            if (inBoth) {
+                result.leggTil(elements[i]);
+            }
+        }
+        return result;
+    }
 }
