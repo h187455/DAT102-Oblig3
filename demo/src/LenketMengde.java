@@ -111,25 +111,30 @@ public class LenketMengde<T> implements MengdeADT<T> {
     }
 
     public boolean erDelmengdeAv(MengdeADT<T> annenMengde) {
-        T[] array = annenMengde.tilTabell();
-        for (int i = 0; i < array.length; i++) {
-            if (!this.inneholder(array[i])) {
-                return false;
+        Node current = first;
+        while (current != null) {
+            if (!annenMengde.inneholder(current.data)) {
+                return false; 
             }
+            current = current.next;
         }
-        return true;
+        return true; 
     }
+    
 
     public boolean erLik(MengdeADT<T> annenMengde) {
         if (this.antallElementer() != annenMengde.antallElementer()) {
             return false;
         }
-        T[] array = annenMengde.tilTabell();
-        for (int i = 0; i < size; i++) {
-            if(!this.inneholder(array[i])) {
+    
+        Node current = first;
+        while (current != null) {
+            if (!annenMengde.inneholder(current.data)) {
                 return false;
             }
+            current = current.next;
         }
+    
         return true;
     }
 
