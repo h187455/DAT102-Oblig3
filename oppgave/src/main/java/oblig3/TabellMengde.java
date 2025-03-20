@@ -68,8 +68,9 @@ public class TabellMengde<T> implements MengdeADT<T> {
     public MengdeADT<T> minus(MengdeADT<T> annenMengde) {
         MengdeADT<T> result = new TabellMengde<>();
 
-        for (T element : elements) {
-            if (!annenMengde.inneholder(element)) {
+        for (int i = 0; i < size; i++) {
+            T element = elements[i];
+            if (element != null && !annenMengde.inneholder(element)) {
                 result.leggTil(element);
             }
         }
@@ -138,13 +139,13 @@ public class TabellMengde<T> implements MengdeADT<T> {
     }
 
     public boolean erDelmengdeAv(MengdeADT<T> annenMengde) {
-        T[] delmengde = annenMengde.tilTabell();
-        for (int i = 0; i < annenMengde.antallElementer(); i++) {
-            if(!this.inneholder(delmengde[i])) {
+        for (int i = 0; i < size; i++) {
+            T element = elements[i];
+            if (element != null && !annenMengde.inneholder(element)) {
                 return false;
             }
         }
-        return true;
+        return true;    
     }
 }
 
