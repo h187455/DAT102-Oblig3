@@ -63,9 +63,12 @@ public class JavaSetToMengde<T> implements MengdeADT<T> {
     }
 
     public boolean erDelmengdeAv(MengdeADT<T> annenMengde) {
-        T[] delmengde = annenMengde.tilTabell();
+        if(this.antallElementer() > annenMengde.antallElementer()) {
+            return false;
+        }
+        T[] delmengde = this.tilTabell();
         for (T element : delmengde) {
-            if (!this.inneholder(element)) {
+            if (!annenMengde.inneholder(element)) {
                 return false;
             }
         }
