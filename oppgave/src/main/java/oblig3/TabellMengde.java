@@ -1,3 +1,5 @@
+package oblig3;
+
 public class TabellMengde<T> implements MengdeADT<T> {
     private int size;
     private T[] elementsCopy;
@@ -145,3 +147,4 @@ public class TabellMengde<T> implements MengdeADT<T> {
         return true;
     }
 }
+

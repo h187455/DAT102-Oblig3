@@ -1,3 +1,5 @@
+package oblig3;
+
 public interface MengdeADT<T> {
 	/**
 	 * @return Om mengden er tom

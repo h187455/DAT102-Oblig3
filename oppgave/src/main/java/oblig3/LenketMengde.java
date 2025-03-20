@@ -1,10 +1,14 @@
+package oblig3;
+
 public class LenketMengde<T> implements MengdeADT<T> {
     private Node first;
     private int size;
+    
     public LenketMengde(){
         this.first = null;
         this.size = 0;
     }
+
     private class Node{
         private T data;
         private Node next;
@@ -148,3 +152,4 @@ public class LenketMengde<T> implements MengdeADT<T> {
         return true;
     }
 }
+
