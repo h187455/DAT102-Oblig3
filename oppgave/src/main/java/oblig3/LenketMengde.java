@@ -19,12 +19,21 @@ public class LenketMengde<T> implements MengdeADT<T> {
     }
 
     public void leggTil(T element) {
-        if (!this.inneholder(element)){
-            Node nyNode=new Node();
-            nyNode.data=element;
-            nyNode.next=first;
-            first=nyNode;
-            size++;    
+        if (!this.inneholder(element)) {
+            Node nyNode = new Node();
+            nyNode.data = element;
+            nyNode.next = null;
+    
+            if (first == null) {
+                first = nyNode; // If the list is empty, set the new node as the first node
+            } else {
+                Node current = first;
+                while (current.next != null) {
+                    current = current.next; // Traverse to the end of the list
+                }
+                current.next = nyNode; // Add the new node at the end
+            }
+            size++;
         }
     }
 
@@ -74,11 +83,9 @@ public class LenketMengde<T> implements MengdeADT<T> {
     public T[] tilTabell() {
         T[] result = (T[]) new Object[size];
         Node current = first;
-        int i = 0;
-        while (current != null) {
+        for (int i = 0; i < size; i++) {
             result[i] = current.data;
             current = current.next;
-            i++;
         }
         return result;
     }
